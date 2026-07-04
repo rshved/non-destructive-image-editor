@@ -16,7 +16,8 @@ npm run dev
 - Live brightness / contrast / saturation sliders with real-time preview
 - Filters: grayscale, sepia (bonus)
 - Draggable before/after compare slider and full reset
-- Export as PNG together with an operations JSON (bonus)
+- Export the result as PNG and the operations as JSON — separate buttons, because mobile browsers
+  allow only one download per tap (bonus)
 - Import an operations JSON back and replay it on the original (bonus, proves replayability)
 
 ## Key decisions
