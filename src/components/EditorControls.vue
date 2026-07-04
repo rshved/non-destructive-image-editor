@@ -80,8 +80,11 @@ const filterOptions = [
       >
         Reset edits
       </v-btn>
-      <v-btn color="primary" variant="flat" block prepend-icon="mdi-download" @click="store.exportResult()">
-        Export
+      <v-btn color="primary" variant="flat" block prepend-icon="mdi-download" @click="store.exportImage()">
+        Export image
+      </v-btn>
+      <v-btn variant="text" block prepend-icon="mdi-code-json" @click="store.exportOperations()">
+        Export operations
       </v-btn>
       <v-btn variant="text" block prepend-icon="mdi-code-json" @click="importOperations">
         Import operations

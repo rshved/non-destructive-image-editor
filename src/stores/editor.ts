@@ -93,14 +93,20 @@ export const useEditorStore = defineStore('editor', () => {
     resetEdits()
   }
 
-  async function exportResult() {
+  async function exportImage() {
     const image = await loadImage(sourceUrl.value)
     const canvas = document.createElement('canvas')
     drawImage(canvas, image, crop.value, cssFilter.value)
+    downloadBlob(await canvasToBlob(canvas), `${baseName()}-edited.png`)
+  }
+
+  function exportOperations() {
     const manifest: ExportManifest = { version: 1, source: sourceName.value, operations: operations.value }
-    const baseName = sourceName.value.replace(/\.[^.]+$/, '')
-    downloadBlob(await canvasToBlob(canvas), `${baseName}-edited.png`)
-    downloadJson(manifest, `${baseName}-operations.json`)
+    downloadJson(manifest, `${baseName()}-operations.json`)
+  }
+
+  function baseName() {
+    return sourceName.value.replace(/\.[^.]+$/, '')
   }
 
   return {
@@ -118,6 +124,7 @@ export const useEditorStore = defineStore('editor', () => {
     resetEdits,
     importManifest,
     clear,
-    exportResult,
+    exportImage,
+    exportOperations,
   }
 })
