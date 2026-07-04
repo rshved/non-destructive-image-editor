@@ -3,8 +3,16 @@ export function pickFile(accept: string): Promise<File | null> {
     const input = document.createElement('input')
     input.type = 'file'
     input.accept = accept
-    input.onchange = () => resolve(input.files?.[0] ?? null)
-    input.oncancel = () => resolve(null)
+    input.style.display = 'none'
+    const finish = (file: File | null) => {
+      input.remove()
+      resolve(file)
+    }
+    input.onchange = () => finish(input.files?.[0] ?? null)
+    input.oncancel = () => finish(null)
+    // Keep the input in the DOM while the picker is open: iOS Safari can
+    // garbage-collect a detached input, and change never fires
+    document.body.appendChild(input)
     input.click()
   })
 }
