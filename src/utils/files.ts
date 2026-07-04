@@ -10,12 +10,12 @@ export function pickFile(accept: string): Promise<File | null> {
 }
 
 export function downloadBlob(blob: Blob, fileName: string) {
-  const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
-  link.href = url
+  link.href = URL.createObjectURL(blob)
   link.download = fileName
+  document.body.appendChild(link)
   link.click()
-  URL.revokeObjectURL(url)
+  link.remove()
 }
 
 export function downloadJson(data: unknown, fileName: string) {
