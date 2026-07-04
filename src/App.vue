@@ -39,7 +39,7 @@ const isCropperOpen = ref(false)
       <v-container v-if="!store.hasImage" class="fill-height" fluid>
         <ImageUpload />
       </v-container>
-      <v-container v-else fluid class="pa-2 pa-sm-4">
+      <v-container v-else fluid class="pa-2 pa-sm-4" style="max-width: 1440px">
         <v-row dense class="ma-0">
           <v-col cols="12" md="8" class="pa-1 pa-sm-2">
             <ImagePreview />
